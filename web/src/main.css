@@ -1,6 +1,8 @@
 html,
 body
 {
+    background: #fff;
+
     margin: 0;
     padding: 0;
 
@@ -11,6 +13,8 @@ body
 {
     color: #000;
     font: 100% Helvetica, Arial, sans;
+
+    /*background: url('../io2.jpg') no-repeat 100% 10%;*/
 
     display: flex;
 
@@ -38,7 +42,6 @@ body
     position: absolute;
 
     display: inline-block;
-    visibility: hidden;
 
     color: transparent;
 
@@ -100,12 +103,45 @@ body
     margin-top: -15vh;
     margin-left: 30vw;
 }
-    .main-content .spin
-    {
-        margin: 3px 0 0 15px;
-    }
 
-    .page.js .spin
+@media only screen and (max-device-width : 980px) {
+    .main-content
     {
-        visibility: visible;
+        margin-left: 10vw;
+    }
+}
+
+@media only screen and (max-device-width : 568px) {
+    .main-content
+    {
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}
+
+.main-content .spin
+{
+    visibility: hidden;
+    opacity: 0;
+
+    margin: 1px 0 0 15px;
+
+    transition: opacity 0.43s linear;
+}
+
+.page.js .spin
+{
+    visibility: visible;
+    opacity: 1;
+}
+
+.hidden
+{
+    opacity: 0;
+}
+
+    .main-content,
+    .desc
+    {
+        transition: opacity 0.43s linear;
     }

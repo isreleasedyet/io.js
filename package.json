@@ -9,6 +9,7 @@
   "author": "Vladimir Varankin <nek.narqo@gmail.com> (http://github.com/narqo)",
   "license": "WTFPL",
   "devDependencies": {
+    "borschik": "^1.3.2",
     "duo": "^0.9.0",
     "duo-6to5": "^1.0.0",
     "duo-autoprefixer": "^1.0.0"

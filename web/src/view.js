@@ -1,16 +1,28 @@
-const SPIN_TIME = 1300;
+var afterTransition = require('anthonyshort/after-transition');
+
+const SPIN_TIME = 1700;
 
 var IOJSORG_URL = 'https://iojs.org',
-    IOJS_LINK = `<a class="link iojs" href="${IOJSORG_URL}">io.js<a/>`;
+    IOJS = `<a class="link iojs" href="${IOJSORG_URL}">io.js</a>`;
+
+function updateElem(domElem, content) {
+    domElem.classList.add('hidden');
+    afterTransition.once(domElem, function() {
+        domElem.innerHTML = content;
+        domElem.classList.remove('hidden');
+    });
+}
 
 function updateNoRelease(root) {
-    root.querySelector('.desc').innerHTML = `It seems that no ${IOJS_LINK} version has been released yet.`;
+    var content = `It seems that no ${IOJS} version has been released yet.`;
+    updateElem(root.querySelector('.desc'), content);
 }
 
 function updateRelease(root, { name, version, url }) {
-    var versionLink = `<a class="link" href="${url}">${version}</a>`,
-        content = `<p class="para">The most recent version of ${IOJS_LINK} is ${versionLink}.</p>`;
-    root.querySelector('.main-content').innerHTML = content;
+    var versionLink = `<a class="link version" href="${url}">${version}</a>`,
+        content = `The most recent ${IOJS} version is ${versionLink}`,
+        contentHtml = `<p class="para release">${content}</p>`;
+    updateElem(root.querySelector('.main-content'), contentHtml);
 }
 
 function updateView(root, ctx) {
@@ -22,4 +34,11 @@ function updateView(root, ctx) {
     }, SPIN_TIME);
 }
 
-exports.update = updateView;
+function initView(root) {
+    root.classList.add('js');
+}
+
+module.exports = {
+    init : initView,
+    update : updateView
+};

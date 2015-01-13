@@ -1,18 +1,11 @@
 var github = require('./github'),
-    view = require('./view');
+    view = require('./view'),
+    Release = require('./release');
+
+const INIT_DELAY = 1200;
 
 const GH_OWNER = 'iojs';
 const GH_REPO = 'io.js';
-//const GH_OWNER = 'bem';
-//const GH_REPO = 'bem-core';
-
-class Release {
-    constructor(name, version, url) {
-        this.name = name;
-        this.version = version;
-        this.url = url;
-    }
-}
 
 var page = null;
 
@@ -32,11 +25,14 @@ function update() {
     github.getReleases({ owner : GH_OWNER, repo : GH_REPO }, handleFetchedData);
 }
 
+function init() {
+    view.init(page);
+    update();
+}
+
 function main() {
     page = document.querySelector('.page');
-    page.classList.add('js');
-
-    update();
+    setTimeout(init, INIT_DELAY);
 }
 
 main();
