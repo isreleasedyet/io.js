@@ -8,5 +8,5 @@ direct relations to the [io.js][1].
 For any official information about io.js project, see [iojs.org][2].
 
 [1]: https://isreleasedyet.github.io/js
-[2]: htts://iojs.org
+[2]: https://iojs.org
 
