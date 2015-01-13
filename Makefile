@@ -18,3 +18,17 @@ web/build/_%: web/build/%
 web/build/main.css: web/src/*.css
 	@test -d $(dir $(@)) || mkdir -p $(dir $(@))
 	$(call build_css,$(@),web/src/main.css)
+
+clean:
+	$(RM) web/build
+
+distclean: clean
+	git clean -xdf
+
+release:
+	mkdir -p release/build
+	touch release/.nojekyll
+	cp web/iojs.html release/index.html
+	mv web/build/_* release/build/
+
+.PHONY: all clean distclean release
