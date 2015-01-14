@@ -1,6 +1,6 @@
 var github = require('./github'),
     view = require('./view'),
-    Release = require('./release');
+    release = require('./release');
 
 const INIT_DELAY = 1200;
 
@@ -9,20 +9,13 @@ const GH_REPO = 'io.js';
 
 var page = null;
 
-function handleFetchedData(err, res) {
-    var data = res.data,
-        release = null;
-
-    if(data.length) {
-        var lattest = data[0];
-        release = new Release(lattest.name, lattest.tag_name, lattest.html_url);
-    }
-
+function handleFetchedData(release) {
     view.update(page, { release });
 }
 
 function update() {
-    github.getReleases({ owner : GH_OWNER, repo : GH_REPO }, handleFetchedData);
+    release.getReleases({ owner : GH_OWNER, repo : GH_REPO }, handleFetchedData);
+    //github.getReleases(, handleFetchedData);
 }
 
 function init() {

@@ -20,7 +20,7 @@ function updateNoRelease(root) {
 
 function updateRelease(root, { name, version, url }) {
     var versionLink = `<a class="link version" href="${url}">${version}</a>`,
-        content = `The most recent ${IOJS} version is ${versionLink}`,
+        content = `The most recent ${IOJS} release is ${versionLink}`,
         contentHtml = `<p class="para release">${content}</p>`;
     updateElem(root.querySelector('.main-content'), contentHtml);
 }
