@@ -20,7 +20,7 @@ web/build/main.css: web/src/*.css
 	$(call build_css,$(@),web/src/main.css)
 
 clean:
-	$(RM) web/build
+	$(RM) -r web/build
 
 distclean: clean
 	git clean -xdf
